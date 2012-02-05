@@ -1,0 +1,1 @@
+/Applications/Adobe\ Flash\ Builder\ 4.6/sdks/4.6.0/bin/adt -package -target ane ActionSheet.ane ./extension.xml -swc ActionSheet.swc -platform iPhone-ARM library.swf libNativeActionSheet.a

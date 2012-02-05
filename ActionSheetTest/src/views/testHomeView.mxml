@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="ActionSheet test">
+	<fx:Script>
+		<![CDATA[
+			import pl.mllr.extensions.nativeActionSheet.ActionSheet;
+			import pl.mllr.extensions.nativeActionSheet.ActionSheetEvent;
+			private var actionSheet:ActionSheet=new ActionSheet();;
+			protected function showObligatoryActionSheet(event:MouseEvent):void
+			{
+				actionSheet.showActionSheet("title of action sheet with obligatory buttons","close me","delete");
+				actionSheet.addEventListener(ActionSheetEvent.SHEET_CLOSE_EVENT,onClose);
+			}
+			
+			protected function showOptionalActionSheet(event:MouseEvent):void
+			{
+				actionSheet.showActionSheet("title of action sheet with optional buttons","close me","delete","optional 1,optional 2,optional 3");
+				actionSheet.addEventListener(ActionSheetEvent.SHEET_CLOSE_EVENT,onClose);
+			}
+			protected function showFromActionSheet(event:MouseEvent):void
+			{
+				actionSheet.showActionSheetFromRect("title of action sheet from Rect 50,50, 100x100","close me","delete","",50,50,100,100);
+				actionSheet.addEventListener(ActionSheetEvent.SHEET_CLOSE_EVENT,onClose);
+			}
+			
+			protected function showFromBottomActionSheet(event:MouseEvent):void
+			{
+				actionSheet.showActionSheetFromRect("title of action sheet with optional buttons from Rect 512,700 10x10","close me","delete","optional 1,optional 2,optional 3",512,700,10,10);
+				actionSheet.addEventListener(ActionSheetEvent.SHEET_CLOSE_EVENT,onClose);
+			}
+			[Bindable]
+			private var labelIndex : String;
+			private function onClose(e:ActionSheetEvent):void
+			{
+				actionSheet.removeEventListener(ActionSheetEvent.SHEET_CLOSE_EVENT,onClose);
+				labelIndex=e.index+"";
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Label x="9" y="145" text="Selected element:  { labelIndex }"/>
+	<s:Button x="10" y="10" width="259" label="show with optional buttons"
+			  click="showOptionalActionSheet(event)"/>
+	<s:Button x="10" y="61" width="259" label="show with obligatory only"
+			  click="showObligatoryActionSheet(event)"/>
+	<s:Button x="285" y="9" width="259" label="show from"
+			  click="showFromActionSheet(event)"/>
+	<s:Button x="285" y="60" width="259" label="show from bottom"
+			  click="showFromBottomActionSheet(event)"/>
+</s:View>
