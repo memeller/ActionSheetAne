@@ -3,6 +3,9 @@ package pl.mllr.extensions.nativeActionSheet
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
+	
+	import flashx.textLayout.formats.Float;
+
 	public class ActionSheet extends EventDispatcher
 	{
 			//---------------------------------------------------------------------
@@ -34,9 +37,10 @@ package pl.mllr.extensions.nativeActionSheet
 			}
 			
 			/**
-			 * @param title Title to be displayed in the Alert.
-			 * @param message Message to be displayed in the Alert.
+			 * Shows actionsheet (iPhone/iPod) 
+			 * @param title Title to be displayed in the ActionSheet.
 			 * @param closeLabel Label for the close button.
+			 * @param destructiveLabel Label for the destructive button (red one).
 			 * @param otherLabels shoud be a comma separated sting of button labels.
 			 * for example "one,two,three"
 			 */
@@ -47,7 +51,26 @@ package pl.mllr.extensions.nativeActionSheet
 				context.addEventListener( StatusEvent.STATUS, onAlertHandler );
 				context.call( "showActionSheet", title, closeLabel,destructiveLabel, otherLabels );
 			}
-			
+			/**
+			 * Shows actionsheet in a popover
+			 * @param title Title to be displayed in the ActionSheet.
+			 * @param closeLabel Label for the close button.
+			 * @param destructiveLabel Label for the destructive button (red one).
+			 * @param otherLabels shoud be a comma separated sting of button labels.
+			 * for example "one,two,three"
+			 * @param xPos x position of rectangle, that is used as starting point for popover
+			 * @param yPos y position of rectangle, that is used as starting point for popover
+			 * @param widthPos width of rectangle, that is used as starting point for popover
+			 * @param heightPos height of rectangle, that is used as starting point for popover
+			 */
+			public function showActionSheetFromRect( title : String, closeLabel : String, destructiveLabel : String, otherLabels : String = "",xPos:Number=0,yPos:Number=0,widthPos:Number=100,heightPos:Number=100 ) : void
+			{
+
+				if(!context)
+					context = ExtensionContext.createExtensionContext( EXTENSION_ID, null );
+				context.addEventListener( StatusEvent.STATUS, onAlertHandler );
+				context.call( "showActionSheetFromRect", title, closeLabel,destructiveLabel, otherLabels,xPos,yPos,widthPos,heightPos );
+			}
 			//---------------------------------------------------------------------
 			//
 			// Private Methods.
