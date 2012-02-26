@@ -42,12 +42,12 @@ FREContext *context;
 -(void)showActionSheetFromRect: (NSString *)title 
                closeLabel: (NSString*)closeLabel
             destructiveLabel: (NSString*)destructiveLabel
-              otherLabels: (NSString*)otherLabels
-                  context: (FREContext *)ctx
-                  /*uint32_t x, 
-uint32_t y, 
-uint32_t width, 
-uint32_t height*/
+              otherLabels: (NSString*)otherLabels                 
+                        xPos: (CGFloat)x
+                        yPos: (CGFloat)y
+                    widthPos: (CGFloat)width
+                    heightPos: (CGFloat)height
+                       context: (FREContext *)ctx
 {
     //Hold onto the context so we can dispatch our message later.
     context = ctx;
@@ -66,7 +66,7 @@ uint32_t height*/
     {
         [action addButtonWithTitle:label];
     }
-    [action showFromRect:CGRectMake(100,200,320,320) inView:[[UIApplication sharedApplication] keyWindow] animated:YES];
+    [action showFromRect:CGRectMake(x,y,width,height) inView:[[UIApplication sharedApplication] keyWindow] animated:YES];
 }	
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
