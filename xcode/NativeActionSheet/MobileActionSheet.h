@@ -19,4 +19,13 @@
          destructiveLabel: (NSString*)destructiveLabel
               otherLabels: (NSString*)otherLabels
                   context: (FREContext *)context;
+-(void)showActionSheetFromRect: (NSString *)title 
+                    closeLabel: (NSString*)closeLabel
+              destructiveLabel: (NSString*)destructiveLabel
+                   otherLabels: (NSString*)otherLabels                       
+                          xPos: (CGFloat)x
+                          yPos: (CGFloat)y
+                      widthPos: (CGFloat)width
+                     heightPos: (CGFloat)height
+context: (FREContext *)ctx;
 @end
